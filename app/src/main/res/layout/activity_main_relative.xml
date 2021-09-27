@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_lab02"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView_L02"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_text_L02"
+        android:layout_alignParentStart="true"
+        android:textSize="30dp" />
+    <Button
+        android:id="@+id/button_L02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_text_L02"
+        android:layout_below="@+id/textView_L02"
+        android:layout_alignEnd="@id/flag_L02"
+        android:layout_alignParentStart="true"
+        />
+    <CheckBox
+        android:id="@+id/checkbox_L02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/checkBox_text_L02"
+        android:layout_below="@+id/textView_L02"
+        android:layout_toEndOf="@+id/button_L02"
+        android:layout_alignParentEnd="true"
+        />
+
+    <ImageButton
+        android:id="@+id/flag_L02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/flag"
+        android:layout_below="@+id/button_L02"
+        android:layout_alignParentStart="true"
+        />
+    <Switch
+        android:id="@+id/switch_L02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_text_L02"
+        android:layout_toRightOf="@+id/flag_L02"
+        android:layout_below="@+id/checkbox_L02"
+        android:layout_alignParentEnd="true"
+        />
+    <!-- Row 4 -->
+    <EditText
+        android:id="@+id/editText_L02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/flag_L02"
+        android:hint="@string/editText_text_L02"
+        />
+</RelativeLayout>
+
+

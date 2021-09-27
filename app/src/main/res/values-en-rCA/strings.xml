@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Android Labs</string>
+    <string name="title_text_L01">Hey Canada!</string>
+    <string name="button_text_L01">I\’m a button</string>
+    <string name="title_text_L02">Look at my GUI</string>
+    <string name="button_text_L02">Click here</string>
+    <string name="checkBox_text_L02">Check this out!</string>
+    <string name="switch_text_L02">Switch on/off</string>
+    <string name="editText_text_L02">Type here</string>
+    <string name="toast_text_L02">Here is more information</string>
+    <string name="snackbar_checkbox_L02">The checkbox is now</string>
+    <string name="snackbar_switch_L02">The switch is now</string>
+    <string name="undo_button_L02">Undo</string>
     <string name="hello_message">Hey Canada!</string>
     <string name="ButtonText">I\’m a button</string>
 </resources>

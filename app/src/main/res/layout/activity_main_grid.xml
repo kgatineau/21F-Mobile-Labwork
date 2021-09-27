@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:rowCount="4"
+    android:columnCount="2"
+    android:layout_height="match_parent">
+    <!-- Row 1 -->
+    <TextView
+        android:id="@+id/textView_L02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:gravity="fill"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:text="@string/title_text_L02"
+        />
+    <!-- Row 2 -->
+    <Button
+        android:id="@+id/button_L02"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="@string/button_text_L02"
+        android:layout_gravity="fill"
+        />
+    <CheckBox
+        android:id="@+id/checkbox_L02"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="@string/checkBox_text_L02"
+        android:gravity="fill"
+        />
+    <!-- Row 3 -->
+    <ImageButton
+        android:id="@+id/flag_L02"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/flag"
+        android:layout_columnWeight="1"
+        android:gravity="fill"
+        />
+    <Switch
+        android:id="@+id/switch_L02"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_text_L02"
+        android:layout_columnWeight="1"
+        android:gravity="fill"
+        />
+    <!-- Row 4 -->
+    <EditText
+        android:id="@+id/editText_L02"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="fill"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="2"
+        android:hint="@string/editText_text_L02"
+        android:inputType="textPersonName|textCapWords"
+        />
+</GridLayout>
