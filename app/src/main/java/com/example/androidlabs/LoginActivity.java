@@ -24,8 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         // loads activity_login page
         emailText = (TextView) findViewById(R.id.editText1_L03);
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-       // preferences = getSharedPreferences("mypref",
-        //        Context.MODE_PRIVATE);
         if (preferences.contains(this.email)) {
             emailText.setText(preferences.getString(this.email, ""));
         }
