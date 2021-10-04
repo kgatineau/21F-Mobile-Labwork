@@ -3,9 +3,7 @@ package com.example.androidlabs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.Button;
@@ -14,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
+/* code for Lab 03 is in LoginActivity instead of MainActivity to match the rubric */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +25,17 @@ public class MainActivity extends AppCompatActivity {
 
         CheckBox checkBox = findViewById(R.id.checkbox_L02);
         checkBox.setOnCheckedChangeListener((cb, b) -> {
-            String x;
-            if (b){
-                x = " on";
-            } else {
-                x = " off";
-            }
-            Snackbar.make(checkBox, getResources()
-                    .getString(R.string.snackbar_checkbox_L02) + x, Snackbar.LENGTH_LONG)
-                    .setAction("Undo", click -> cb.setChecked(!b)).show();
+                    String x;
+                    if (b){
+                        x = " on";
+                    } else {
+                        x = " off";
+                    }
+                    Snackbar.make(checkBox, getResources()
+                            .getString(R.string.snackbar_checkbox_L02) + x, Snackbar.LENGTH_LONG)
+                            .setAction("Undo", click -> cb.setChecked(!b)).show();
 
-        }
+                }
         );
         Switch switchLab02 = findViewById(R.id.switch_L02);
         switchLab02.setOnCheckedChangeListener((cb, b) -> {

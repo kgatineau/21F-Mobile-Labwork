@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:id="@+id/textView3_L03"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/textView_text3_L03"
+    android:textSize="20sp"  />
+    <TextView
+        android:id="@+id/textView4_L03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textView_text4_L03"
+        android:textSize="20sp"  />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/editText_text2_L03" />
+    <TextView
+        android:id="@+id/textView5_L03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textView_text5_L03"
+        android:textSize="20sp"  />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/editText_text3_L03" />
+    <TextView
+        android:id="@+id/textView6_L03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textView_text6_L03"
+        android:textSize="20sp" />
+    <ImageButton
+        android:id="@+id/imageButton_L03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/picture_frame" />
+    <TextView
+        android:id="@+id/textView7_L03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textView_text7_L03"
+        android:textSize="20sp" />
+</LinearLayout>
