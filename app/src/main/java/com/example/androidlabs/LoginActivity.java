@@ -22,13 +22,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // loads activity_login page
-        emailText = (TextView) findViewById(R.id.editText1_L03);
+        emailText = findViewById(R.id.editText1_L03);
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         if (preferences.contains(this.email)) {
             emailText.setText(preferences.getString(this.email, ""));
         }
         // retrieves saved preference (email text input) when app is launched
-        Button button = (Button) findViewById(R.id.button_L03);
+        Button button = findViewById(R.id.button_L03);
         button.setOnClickListener(v -> {
             Intent toProfile = new Intent(LoginActivity.this, ProfileActivity.class);
             LoginActivity.this.startActivity(toProfile);

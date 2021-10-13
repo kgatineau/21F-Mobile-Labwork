@@ -25,4 +25,13 @@
     <string name="editText_text3_L03">My email is..</string>
     <string name="textView_text6_L03">My picture:</string>
     <string name="textView_text7_L03">Take a picture by clicking the button above</string>
+    <string name="button_text1_L04">Enter chat</string>
+    <string name="button_text2_L04">Send-</string>
+    <string name="editText_text_L04">Enter message here</string>
+    <string name="button_text3_L04">-Receive</string>
+    <string name="dialogTitle_text_L04">Delete this row?</string>
+    <string name="setMessage_text1_L04">You selected row:  </string>
+    <string name="setMessage_text2_L04">with a database ID of:  </string>
+    <string name="posButton_text_L04">Yep!</string>
+    <string name="negButton_text_L04">Nope</string>
 </resources>

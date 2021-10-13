@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -14,36 +15,42 @@ public class ProfileActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
     ImageButton mImageButton;
+    Button buttonL04;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        mImageButton = (ImageButton) findViewById(R.id.imageButton_L03);
+        mImageButton = findViewById(R.id.imageButton_L03);
         mImageButton.setOnClickListener(v -> dispatchTakePictureIntent());
         /* calls the dispatchTakePictureIntent() function when the ImageButton is clicked
         which contains the Intent statement that opens the Android camera */
-        Log.e(ACTIVITY_NAME, "In function: " + "onCreate()");
+        buttonL04 = findViewById(R.id.button1_L04);
+        buttonL04.setOnClickListener(v -> {
+            Intent toProfile = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+            ProfileActivity.this.startActivity(toProfile);});
+
+        // Log.e(ACTIVITY_NAME, "In function: " + "onCreate()");
     }
 
     protected void onStart() {
         super.onStart();
-        Log.e(ACTIVITY_NAME, "In function: " + "onStart()");
+        // Log.e(ACTIVITY_NAME, "In function: " + "onStart()");
     }
 
     protected void onResume() {
         super.onResume();
-        Log.e(ACTIVITY_NAME, "In function: " + "onResume()");
+        // Log.e(ACTIVITY_NAME, "In function: " + "onResume()");
     }
 
     protected void onPause() {
         super.onPause();
-        Log.e(ACTIVITY_NAME, "In function: " + "onPause()");
+        // Log.e(ACTIVITY_NAME, "In function: " + "onPause()");
     }
 
     protected void onDestroy() {
         super.onDestroy();
-        Log.e(ACTIVITY_NAME, "In function: " + "onDestroy()");
+        // Log.e(ACTIVITY_NAME, "In function: " + "onDestroy()");
     }
 
     private void dispatchTakePictureIntent() {
