@@ -1,130 +1,209 @@
 package com.example.androidlabs;
 
-import android.content.Context;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ChatRoomActivity extends AppCompatActivity {
 
-    protected ArrayList<String> listL04 = new ArrayList<>();
-
+    protected ArrayList<Message> listL04 = new ArrayList<>();
+    SQLiteDatabase dbL05;
+    ChatAdapter adapterL04;
+    ListView listViewL04;
+    Cursor resultsL05;
+    int isSendIntL05;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_chat_room);
-        ListView listViewL04 = findViewById(R.id.listViewL04);
-        final Message messageL04 = new Message(this);
-        listViewL04.setAdapter(messageL04);
-        listViewL04.setOnItemClickListener(((parent, view, position, id) -> {
-            listL04.remove(position);
-            messageL04.notifyDataSetChanged();
-        }));
 
         Button bSend = findViewById(R.id.button2_L04);
         Button bReceive = findViewById(R.id.button3_L04);
         EditText editTextChatL04 = findViewById(R.id.editText_L04);
 
+        loadDatabaseData();
+
+        listViewL04 = findViewById(R.id.listViewL04);
+        adapterL04 = new ChatAdapter();
+        listViewL04.setAdapter(adapterL04);
+        listViewL04.setOnItemClickListener(((parent, view, position, id) -> {
+            adapterL04.notifyDataSetChanged();
+        }));
+
         bSend.setOnClickListener(v -> {
-            messageL04.isSend = true;
+            this.isSendIntL05 = 1;
             String chatRow = editTextChatL04.getText().toString();
-            listL04.add(chatRow);
-            messageL04.notifyDataSetChanged();
+
+            ContentValues newRowValues = new ContentValues();
+            newRowValues.put(MyOpener.COL_MSG, chatRow);
+            newRowValues.put(MyOpener.COL_IS_SEND, isSendIntL05);
+
+            long id = dbL05.insert(MyOpener.TABLE_NAME, null, newRowValues);
+
+            listL04.add(new Message(chatRow, true, id));
+            adapterL04.notifyDataSetChanged();
             editTextChatL04.setText("");
         });
 
         bReceive.setOnClickListener((v -> {
-            messageL04.isSend = false;
+            this.isSendIntL05 = 0;
             String chatRow = editTextChatL04.getText().toString();
-            listL04.add(chatRow);
-            messageL04.notifyDataSetChanged();
+
+            ContentValues newRowValues = new ContentValues();
+            newRowValues.put(MyOpener.COL_MSG, chatRow);
+            newRowValues.put(MyOpener.COL_IS_SEND, isSendIntL05);
+
+            long id = dbL05.insert(MyOpener.TABLE_NAME, null, newRowValues);
+
+            listL04.add(new Message(chatRow, false, id));
+            adapterL04.notifyDataSetChanged();
             editTextChatL04.setText("");
         }));
 
         listViewL04.setOnItemLongClickListener((p, b, pos, id) -> {
-            AlertDialog.Builder alertDelete = new AlertDialog.Builder(this);
-            alertDelete.setTitle(R.string.dialogTitle_text_L04)
-                    .setMessage(getString(R.string.setMessage_text1_L04) + " " + (pos + 1) + "\n" +
-                            getString(R.string.setMessage_text2_L04) + " " + id)
+                    Message m = listL04.get(pos);
+                    AlertDialog alertDelete = new AlertDialog.Builder(this)
+                            .setTitle(getString(R.string.dialogTitle_text_L04))
+                            .setMessage(((getString(R.string.setMessage_text1_L04)) + (pos + 1)) + "\n" + (getString(R.string.setMessage_text2_L04)) + (adapterL04.getItemId(pos)))
 
-                    .setPositiveButton(R.string.posButton_text_L04, (dialog, which) -> {
-                        listL04.remove(messageL04.getItem(pos));
-                        messageL04.notifyDataSetChanged();
-                    })
-                    .setNegativeButton(R.string.negButton_text_L04, (dialog, which) -> {
-                        dialog.dismiss();
-                    })
+                            .setPositiveButton(getString(R.string.posButton_text_L04), (dialog, which) -> {
+                                deleteMessage(m);
+                                listL04.remove(pos);
+                                adapterL04.notifyDataSetChanged();
 
-                    .show();
-            return true;
+                            })
+                            .setNegativeButton(getString(R.string.negButton_text_L04), null)
+                            .create();
+                    alertDelete.show();
+                    return true;
 
-        });
+                }
+        );
 
     }
 
-    class Message extends ArrayAdapter<String> {
-        protected boolean isSend = true;
+    private void loadDatabaseData() {
+        MyOpener dbOpener = new MyOpener(this);
+        dbL05 = dbOpener.getWritableDatabase();
 
-        public Message(@NonNull Context context) {
-            super(context, 0);
+        String[] column = {MyOpener.COL_ID, MyOpener.COL_MSG, MyOpener.COL_IS_SEND};
+
+        resultsL05 = dbL05.query(false, MyOpener.TABLE_NAME, column, null, null, null, null, null, null);
+
+        int messageColIndex = resultsL05.getColumnIndex(MyOpener.COL_MSG);
+        int idColIndex = resultsL05.getColumnIndex(MyOpener.COL_ID);
+        int isSendColIndex = resultsL05.getColumnIndex(MyOpener.COL_IS_SEND);
+
+
+        while (resultsL05.moveToNext()) {
+            boolean isSend;
+            String message = resultsL05.getString(messageColIndex);
+            long id = resultsL05.getLong(idColIndex);
+            if (this.isSendIntL05 == 1) {
+                isSend = resultsL05.getInt(isSendColIndex) == 0;
+                listL04.add(new Message(message, isSend, id));
+            } else {
+                isSend = resultsL05.getInt(isSendColIndex) == 1;
+                listL04.add(new Message(message, isSend, id));
+            }
+
+
+        }
+        printCursor(resultsL05, dbL05.getVersion());
+    }
+
+    protected void deleteMessage(Message message) {
+
+        dbL05.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[]{Long.toString(message.getId())});
+    }
+
+    protected void printCursor(Cursor c, int version) {
+        if (c.moveToFirst()) {
+            Log.i("version number", String.valueOf(dbL05.getVersion()));
+            Log.i("number of cursor columns", String.valueOf(c.getColumnCount()));
+            Log.i("name of cursor columns", Arrays.toString(c.getColumnNames()));
+            Log.i("number of cursor results", String.valueOf(c.getCount()));
+            Log.i("cursor row results", DatabaseUtils.dumpCursorToString(c));
+        }
+    }
+
+    public class Message {
+        protected boolean isSend;
+        protected String message;
+        protected long id;
+
+        public Message(String message, boolean isSend, long id) {
+
+            this.message = message;
+            this.isSend = isSend;
+            this.id = id;
+        }
+
+        public Message(String message, boolean isSend) {
+            this(message, isSend, 0);
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public boolean getSend() {
+            return isSend;
+        }
+
+        public long getId() {
+            return id;
         }
 
 
-        @Override
+    }
+
+    private class ChatAdapter extends BaseAdapter {
         public int getCount() {
             return listL04.size();
         }
 
-        @Nullable
+
         @Override
-        public String getItem(int position) {
+        public Message getItem(int position) {
             return listL04.get(position);
         }
 
-        @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            View view = convertView;
+        public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
+            Message msg = listL04.get(position);
 
-            if (view == null && isSend) {
-                view = inflater.inflate(R.layout.row_layout_send, parent, false);
+            View view = inflater.inflate((msg.isSend) ? R.layout.row_layout_send : R.layout.row_layout_receive, parent, false);
 
-
-            }
-            if (view == null & !isSend) {
-                view = inflater.inflate(R.layout.row_layout_receive, parent, false);
-
-            }
-
-            assert view != null;
             TextView message = view.findViewById((R.id.textView1_L04));
-            message.setText(getItem(position));
+            message.setText(msg.message);
             return view;
 
         }
 
         @Override
         public long getItemId(int position) {
-            return position;
+            return getItem(position).getId();
         }
-
-
     }
-}
 
+}
