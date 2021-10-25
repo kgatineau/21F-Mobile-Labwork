@@ -110,10 +110,15 @@ public class WeatherForecast extends AppCompatActivity {
                 Log.i("Looking for ", fileName);
 
                 if (fileExistence(fileName)) {
+                    try{
                     FileInputStream fis = null;
                     fis = openFileInput(fileName);
                     Log.i("File ", "loaded from local file..");
                     this.imgPic = BitmapFactory.decodeStream(fis);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     Bitmap image = null;
                     URL url2 = new URL("http://openweathermap.org/img/w/" + icon + ".png");
