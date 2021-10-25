@@ -34,4 +34,9 @@
     <string name="setMessage_text2_L04">with a database ID of:  </string>
     <string name="posButton_text_L04">Yep!</string>
     <string name="negButton_text_L04">Nope</string>
+    <string name="button_text_L06">Forecast Weather</string>
+    <string name="textView_text1_L06">Current Temp: %1$s°C</string>
+    <string name="textView_text2_L06">Min Temp: %1$s°C</string>
+    <string name="textView_text3_L06">Max Temp: %1$s°C</string>
+    <string name="textView_text4_L06">UV Index: %1$s</string>
 </resources>

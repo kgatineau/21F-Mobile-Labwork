@@ -16,6 +16,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
     ImageButton mImageButton;
     Button buttonL04;
+    Button buttonL06;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +26,15 @@ public class ProfileActivity extends AppCompatActivity {
         mImageButton.setOnClickListener(v -> dispatchTakePictureIntent());
         /* calls the dispatchTakePictureIntent() function when the ImageButton is clicked
         which contains the Intent statement that opens the Android camera */
+
         buttonL04 = findViewById(R.id.button1_L04);
         buttonL04.setOnClickListener(v -> {
             Intent toProfile = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+            ProfileActivity.this.startActivity(toProfile);});
+
+        buttonL06 = findViewById(R.id.button1_L06);
+        buttonL06.setOnClickListener(v -> {
+            Intent toProfile = new Intent(ProfileActivity.this, WeatherForecast.class);
             ProfileActivity.this.startActivity(toProfile);});
 
         // Log.e(ACTIVITY_NAME, "In function: " + "onCreate()");
