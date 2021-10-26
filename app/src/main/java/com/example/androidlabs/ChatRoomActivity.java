@@ -5,10 +5,14 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.print.PrintAttributes;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +84,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         listViewL04.setOnItemLongClickListener((p, b, pos, id) -> {
                     Message m = listL04.get(pos);
+
                     AlertDialog alertDelete = new AlertDialog.Builder(this)
                             .setTitle(getString(R.string.dialogTitle_text_L04))
                             .setMessage(((getString(R.string.setMessage_text1_L04)) + (pos + 1)) + "\n" + (getString(R.string.setMessage_text2_L04)) + (adapterL04.getItemId(pos)))
@@ -90,6 +95,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                                 adapterL04.notifyDataSetChanged();
 
                             })
+
                             .setNegativeButton(getString(R.string.negButton_text_L04), null)
                             .create();
                     alertDelete.show();
