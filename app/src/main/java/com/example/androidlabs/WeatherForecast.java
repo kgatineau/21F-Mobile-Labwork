@@ -110,10 +110,14 @@ public class WeatherForecast extends AppCompatActivity {
                 Log.i("Looking for ", fileName);
 
                 if (fileExistence(fileName)) {
-                    FileInputStream fis = null;
-                    fis = openFileInput(fileName);
-                    Log.i("File ", "loaded from local file..");
-                    this.imgPic = BitmapFactory.decodeStream(fis);
+                    try {
+                        FileInputStream fis = null;
+                        fis = openFileInput(fileName);
+                        Log.i("File ", "loaded from local file..");
+                        this.imgPic = BitmapFactory.decodeStream(fis);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        }
                 } else {
                     Bitmap image = null;
                     URL url2 = new URL("http://openweathermap.org/img/w/" + icon + ".png");
@@ -185,7 +189,6 @@ public class WeatherForecast extends AppCompatActivity {
             uvRatingL06.setText(getString(R.string.textView_text4_L06, uv));
             progressBarL06.setVisibility(View.INVISIBLE);
         }
-
 
     }
 }
