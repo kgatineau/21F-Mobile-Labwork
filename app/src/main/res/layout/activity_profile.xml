@@ -2,7 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="27dp"
+    android:layout_marginBottom="27dp"
+    android:layout_marginLeft="48dp"
+    android:layout_marginRight="48dp"
+    >
 
 <TextView
     android:id="@+id/textView3_L03"
@@ -17,19 +22,27 @@
         android:text="@string/textView_text4_L03"
         android:textSize="15sp"  />
     <EditText
+        android:id="@+id/editText3_L03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/editText_text2_L03" />
+        android:hint="@string/editText_text2_L03"
+        android:nextFocusDown="@id/textView5_L03"
+        android:nextFocusUp="@+id/button1_L06"
+        />
     <TextView
         android:id="@+id/textView5_L03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/textView_text5_L03"
-        android:textSize="15sp"  />
+        android:textSize="15sp"
+        />
     <EditText
+        android:id="@+id/editText4_L03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/editText_text3_L03" />
+        android:hint="@string/editText_text3_L03"
+        android:nextFocusDown="@+id/textView6_L03"
+        android:nextFocusUp="@+id/textView5_L03" />
     <TextView
         android:id="@+id/textView6_L03"
         android:layout_width="match_parent"
@@ -52,12 +65,17 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="@string/button_text1_L04"
+        android:nextFocusDown="@+id/button1_L06"
+        android:nextFocusUp="@+id/textView7_L03"
+
 />
     <Button
         android:id="@+id/button1_L06"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="@string/button_text_L06"
+        android:nextFocusDown="@+id/editText3_L03"
+        android:nextFocusUp="@+id/button1_L04"
         />
 
 </LinearLayout>

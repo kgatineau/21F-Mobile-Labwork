@@ -3,6 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="27dp"
+    android:layout_marginBottom="27dp"
+    android:layout_marginLeft="48dp"
+    android:layout_marginRight="48dp"
+
     >
 
     <TextView
@@ -18,6 +23,8 @@
         android:hint="@string/editText_text1_L03"
         android:textSize="30sp"
         android:inputType="textEmailAddress"
+        android:nextFocusDown="@+id/editText2_L02"
+        android:nextFocusUp="@+id/button_L03"
         />
     <TextView
         android:id="@+id/textView2_L03"
@@ -31,11 +38,16 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:inputType="textPassword"
+        android:nextFocusDown="@+id/button_L03"
+        android:nextFocusUp="@+id/textView2_L03"
         />
     <Button
         android:id="@+id/button_L03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_text_L03"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:nextFocusDown="@+id/editText1_L03"
+        android:nextFocusUp="@+id/editText2_L02"
+        />
 </LinearLayout>
