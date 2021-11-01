@@ -84,16 +84,16 @@ public class WeatherForecast extends AppCompatActivity {
                         //If you get here, then you are pointing at a start tag
                         if (xpp.getName().equals("temperature")) {
                             //If you get here, then you are pointing to a <temperature> start tag
-                            this.currentTemp = xpp.getAttributeValue(null, "value");
+                            currentTemp = xpp.getAttributeValue(null, "value");
                             publishProgress(25);
-                            this.min = xpp.getAttributeValue(null, "min");
+                            min = xpp.getAttributeValue(null, "min");
                             publishProgress(50);
-                            this.max = xpp.getAttributeValue(null, "max");
+                            max = xpp.getAttributeValue(null, "max");
                             publishProgress(75);
 
                             Log.i("Current Temp", String.valueOf(this.currentTemp));
-                            Log.i("Min", String.valueOf(this.min));
-                            Log.i("Max", String.valueOf(this.max));
+                            Log.i("Min", String.valueOf(min));
+                            Log.i("Max", String.valueOf(max));
 
 
                         } else if (xpp.getName().equals("weather")) {

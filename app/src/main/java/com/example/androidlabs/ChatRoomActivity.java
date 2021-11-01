@@ -1,6 +1,7 @@
 package com.example.androidlabs;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,11 +13,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +33,11 @@ public class ChatRoomActivity extends AppCompatActivity {
     Cursor resultsL05;
     int isSendIntL05;
 
+    public static final String ITEM_MSG = "MESSAGE";
+    public static final String ITEM_SEND_RECEIVE = "SEND";
+    public static final String ITEM_POSITION = "POSITION";
+    public static final String ITEM_ID = "ID";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +47,15 @@ public class ChatRoomActivity extends AppCompatActivity {
         Button bReceive = findViewById(R.id.button3_L04);
         EditText editTextChatL04 = findViewById(R.id.editText_L04);
 
+
         loadDatabaseData();
 
         listViewL04 = findViewById(R.id.listViewL04);
+        FrameLayout frameLayoutL07 = findViewById(R.id.frameLayout_L07);
+
+        boolean isTablet = findViewById(R.id.frameLayout_L07) != null;
         adapterL04 = new ChatAdapter();
+
         listViewL04.setAdapter(adapterL04);
         listViewL04.setOnItemClickListener(((parent, view, position, id) -> {
             adapterL04.notifyDataSetChanged();
@@ -78,6 +91,28 @@ public class ChatRoomActivity extends AppCompatActivity {
             editTextChatL04.setText("");
         }));
 
+        listViewL04.setOnItemClickListener(((parent, view, position, id) -> {
+
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(ITEM_MSG, listL04.get(position).getMessage());
+            dataToPass.putInt(ITEM_POSITION, position);
+            dataToPass.putLong(ITEM_ID, id);
+            dataToPass.putBoolean(ITEM_SEND_RECEIVE, listL04.get(position).getSend());
+            DetailsFragment fragment = new DetailsFragment();
+
+            if (isTablet) {
+                fragment.setArguments(dataToPass);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameLayout_L07, fragment)
+                        .commit();
+            } else {
+                Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass);
+                startActivity(nextActivity);
+
+            }
+        }));
         listViewL04.setOnItemLongClickListener((p, b, pos, id) -> {
                     Message m = listL04.get(pos);
                     AlertDialog alertDelete = new AlertDialog.Builder(this)
@@ -88,6 +123,21 @@ public class ChatRoomActivity extends AppCompatActivity {
                                 deleteMessage(m);
                                 listL04.remove(pos);
                                 adapterL04.notifyDataSetChanged();
+
+                                if (isTablet) {
+                                    try {
+                                    Log.i("Frame layout value", String.valueOf(frameLayoutL07));
+                                    Fragment fragL07 = getSupportFragmentManager().findFragmentById(R.id.frameLayout_L07);
+                                    getSupportFragmentManager()
+                                            .beginTransaction()
+                                            .remove(fragL07)
+                                            .commit(); }
+                                    catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+
 
                             })
                             .setNegativeButton(getString(R.string.negButton_text_L04), null)

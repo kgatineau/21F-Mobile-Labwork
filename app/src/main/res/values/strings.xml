@@ -38,4 +38,9 @@
     <string name="textView_text2_L06">Min: %1$s°C</string>
     <string name="textView_text3_L06">Max: %1$s°C</string>
     <string name="textView_text4_L06">UV Rating: %1$s</string>
+    <string name="textView_text1_L07">Message Here</string>
+    <string name="textView_text2_L07">ID=%1$s </string>
+    <string name="checkBox_text_L07">Is a Send Message</string>
+    <string name="button_text_L07">HIDE</string>
+
 </resources>
