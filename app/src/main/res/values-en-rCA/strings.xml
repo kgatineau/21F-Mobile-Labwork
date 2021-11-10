@@ -43,4 +43,15 @@
     <string name="textView_text2_L07">ID is: %1$s</string>
     <string name="checkBox_text_L07">This is a Send Message</string>
     <string name="button_text_L07">RETURN</string>
+    <string name="button_text_L08">Take me to Toolbar Page</string>
+    <string name="menu_text1_L08">You clicked the first item</string>
+    <string name="menu_text2_L08">You clicked the second item</string>
+    <string name="menu_text3_L08">You clicked the third item</string>
+    <string name="menu_text4_L08">This is an overflow item</string>
+    <string name="open_L08">Open</string>
+    <string name="close_L08">Close</string>
+    <string name="nav_text1_L08">Go to Chat</string>
+    <string name="nav_text2_L08">Go to Weather</string>
+    <string name="nav_text3_L08">Back to Login</string>
+    <string name="nav_text4_L08">Over flow</string>
 </resources>

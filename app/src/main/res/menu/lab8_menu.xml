@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/message"
+        android:title="@string/nav_text1_L08"
+        android:icon="@drawable/message"
+        android:orderInCategory="50"
+        app:showAsAction="always"/>
+    <item android:id="@+id/weather"
+        android:title="@string/nav_text2_L08"
+        android:icon="@drawable/weather"
+        android:orderInCategory="75"
+        app:showAsAction="always"/>
+    <item android:id="@+id/login"
+        android:title="@string/nav_text3_L08"
+        android:icon="@drawable/login"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/overflow"
+        android:title="@string/nav_text4_L08"
+        app:showAsAction="never"
+        android:orderInCategory="125"/> <!-- This uses showAsAction=never, so look at title= parameter -->
+
+
+</menu>

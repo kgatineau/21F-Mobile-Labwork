@@ -17,6 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
     ImageButton mImageButton;
     Button buttonL04;
     Button buttonL06;
+    Button buttonL08;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,12 @@ public class ProfileActivity extends AppCompatActivity {
         buttonL06.setOnClickListener(v -> {
             Intent toProfile = new Intent(ProfileActivity.this, WeatherForecast.class);
             ProfileActivity.this.startActivity(toProfile);});
+
+        buttonL08 = findViewById(R.id.button1_L08);
+        buttonL08.setOnClickListener(v -> {
+            Intent toToolbar = new Intent(ProfileActivity.this, TestToolbar.class);
+            startActivityForResult(toToolbar, 100);
+        });
 
         // Log.e(ACTIVITY_NAME, "In function: " + "onCreate()");
     }
@@ -76,8 +83,10 @@ public class ProfileActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageButton.setImageBitmap(imageBitmap);
         }
-        // saves the image taken with the android camera and replaces the ImageButton default image
-        // with the photo
+        if (requestCode == 100 && resultCode == 500) {
+            this.finish();
+        }
+
     }
 
 }

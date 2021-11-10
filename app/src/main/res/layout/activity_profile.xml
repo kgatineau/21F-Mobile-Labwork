@@ -71,8 +71,15 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="@string/button_text_L06"
-        android:nextFocusDown="@+id/editText3_L03"
+        android:nextFocusDown="@+id/button1_L08"
         android:nextFocusUp="@+id/button1_L04"
         />
-
+    <Button
+        android:id="@+id/button1_L08"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/button_text_L08"
+        android:nextFocusDown="@+id/editText3_L03"
+        android:nextFocusUp="@+id/editText3_L03"
+        />
 </LinearLayout>
