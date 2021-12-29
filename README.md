@@ -1,2 +1,2 @@
-# AndroidLabs
-041014962 - Kaitlyn Gatineau - Lab 02
+21F-Mobile-Labwork
+Kaitlyn Gatineau - Lab 02
